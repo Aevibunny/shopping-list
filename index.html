@@ -3,10 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Mama's Shopping</title>
   </head>
   <body>
-    
+    <div class="main-container">
+      <header class="header">
+        <h1>Mama's Shopping List</h1>
+      </header>
+      <button class="accordion active">Basics</button>
+      <div class="panel" style="display: block;" id="basics-container">
+      </div>
+
+      <button class="accordion active">Household</button>
+      <div class="panel" style="display: block;" id="household-container">
+      </div>
+
+      <button class="accordion active">Shopping List</button>
+      <div class="panel" style="display: block;" id="shopping-list-container">
+        <div class="store">
+          <h3 class="store-name">Test Store</h3>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
