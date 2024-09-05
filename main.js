@@ -1,33 +1,43 @@
 import './style.css'
 import { sortArray } from './sort-array';
 import { accordionButtons } from './accordion-buttons';
+import { renderShoppingList } from './render-shopping-list';
 
 const basicsContainer = document.getElementById('basics-container');
 const householdContainer = document.getElementById('household-container');
-const shoppingListContainer = document.getElementById('shopping-list-container');
 
 const shoppingList = [
     {
         name: 'Rice',
         type: 'basics',
-        store: 'walmart',
+        store: 'Walmart',
+    },
+    {
+        name: 'Paper Towels',
+        type: 'household',
+        store: 'Sams Club',
+    },
+    {
+        name: 'Flour',
+        type: 'basics',
+        store: 'Walmart',
     },
 ];
 const itemsArray = [
     {
         name: 'Rice',
         type: 'basics',
-        store: 'walmart',
+        store: 'Walmart',
     },
     {
         name: 'Paper Towels',
         type: 'household',
-        store: 'sams club',
+        store: 'Sams Club',
     },
     {
         name: 'Flour',
         type: 'basics',
-        store: 'walmart',
+        store: 'Walmart',
     },
 ]
 
@@ -53,12 +63,8 @@ const renderItemsList = () => {
     })
 }
 
-const renderShoppingList = () => {
-
-
-}
-
 // add click events
 accordionButtons();
 
 renderItemsList();
+renderShoppingList(shoppingList);
