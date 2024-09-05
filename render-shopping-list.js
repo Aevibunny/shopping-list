@@ -3,6 +3,8 @@ import { sortArray } from "./sort-array";
 const shoppingListContainer = document.getElementById('shopping-list-container');
 
 export const renderShoppingList = (array) => {
+    shoppingListContainer.innerHTML = '';
+
     const storeGroups = {};
 
     const sortedArray = sortArray(array);
@@ -20,6 +22,7 @@ export const renderShoppingList = (array) => {
 
         // Store container
         const storeContainer = document.createElement('div');
+        storeContainer.id = store;
         storeContainer.className = 'store-container';
         
         // Store Header
@@ -44,20 +47,31 @@ export const renderShoppingList = (array) => {
             label.htmlFor = product;
             label.textContent = ' ' + product;
     
+            // Append Items
             item.appendChild(checkbox);
             item.appendChild(label);
             ulContainer.appendChild(item);
         });
-
+        // Append Ul
         storeContainer.appendChild(ulContainer); 
+
+        // Create and append Clear Button
+        if (array.length > 0) {
+            const clearButton = document.createElement('button');
+            clearButton.textContent = 'Clear';
+            clearButton.classList.add('clear-btn');
+            clearButton.id = 'clear-btn';
+            storeContainer.appendChild(clearButton);
+
+            // Add Event Listener to Clear Button
+            clearButton.addEventListener('click', (e) => {
+                const storeName = e.target.parentElement.id;
+                array = array.filter(item => item.store !== storeName);
+                renderShoppingList(array);
+                console.log(array);
+            })
+        }
         shoppingListContainer.appendChild(storeContainer);
     }
-    // Create Clear Button
-    if (array.length > 0) {
-    const clearButton = document.createElement('button');
-    clearButton.textContent = 'Clear All';
-    clearButton.classList.add('clear-btn');
-    clearButton.id = 'clear-btn';
-    shoppingListContainer.appendChild(clearButton);
-    }
+
 }
