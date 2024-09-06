@@ -509,18 +509,31 @@ const removeCheckboxState = (uniqueId) => {
 
 //save local storage
 const saveData = () => {
-    localStorage.setItem('itemsArray', JSON.stringify(itemsArray));
-    localStorage.setItem('shoppingArray', JSON.stringify(shoppingList));
-}
+    try {
+        localStorage.setItem('itemsArray', JSON.stringify(itemsArray));
+        localStorage.setItem('shoppingArray', JSON.stringify(shoppingList));
+    } catch (error) {
+        console.error('Error saving data to localStorage:', error);
+    }
+};
   
 const loadData = () => {
-    let retreivedItemsList = localStorage.getItem('itemsArray');
-    let retreivedShoppingList = localStorage.getItem('shoppingArray');
-    let fixedItemsList = JSON.parse(retreivedItemsList);
-    let fixedShoppingList = JSON.parse(retreivedShoppingList);
-    itemsArray.splice(0, itemsArray.length, ...fixedItemsList);
-    shoppingList.splice(0, shoppingList.length, ...fixedShoppingList);
-}   
+        try {
+            // Retrieve items and shopping list from localStorage
+            let retrievedItemsList = localStorage.getItem('itemsArray');
+            let retrievedShoppingList = localStorage.getItem('shoppingArray');
+    
+            // Fallback to default arrays if nothing is in localStorage
+            let fixedItemsList = retrievedItemsList ? JSON.parse(retrievedItemsList) : [...itemsArray];
+            let fixedShoppingList = retrievedShoppingList ? JSON.parse(retrievedShoppingList) : [...shoppingList];
+    
+            // Replace current arrays with loaded or fallback data
+            itemsArray.splice(0, itemsArray.length, ...fixedItemsList);
+            shoppingList.splice(0, shoppingList.length, ...fixedShoppingList);
+        } catch (error) {
+            console.error('Error loading data from localStorage:', error);
+        }
+};
 
 loadData();
 accordionButtons(); // add click events
