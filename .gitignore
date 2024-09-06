@@ -1,0 +1,28 @@
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Dependency directories
+jspm_packages/
+
+# Compiled source
+out/
+build/
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# dotenv environment variable file
+.env
+
+# Next.js build output
+.next/
+
+# Mac system files
+.DS_Store
+
+# Exclude other folders/files if necessary
